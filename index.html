@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Love Surprise</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #fff0f7, #ffd6e7, #ffb6d0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 18px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 450px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 32px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(255, 70, 140, 0.35);
+      animation: pop 0.6s ease;
+      z-index: 3;
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .progress {
+      width: 100%;
+      height: 9px;
+      background: #ffe1ef;
+      border-radius: 100px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 20%;
+      border-radius: 100px;
+      background: linear-gradient(135deg, #ff4f9a, #ff2474);
+      transition: 0.4s ease;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fff0f7;
+      color: #ff3f87;
+      padding: 7px 15px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      color: #ff2f7d;
+      font-size: 28px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #70495b;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 100%;
+      border: 2px solid #ffd0e4;
+      outline: none;
+      border-radius: 16px;
+      padding: 14px 16px;
+      text-align: center;
+      color: #ff2f7d;
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    input:focus {
+      border-color: #ff5f9e;
+    }
+
+    .girl-card {
+      width: 135px;
+      height: 135px;
+      margin: 8px auto 14px;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(135deg, #ff5f9e, #ffd166, #ff8fab);
+      box-shadow: 0 15px 35px rgba(255, 79, 154, 0.28);
+      animation: softFloat 3s ease-in-out infinite;
+    }
+
+    .girl-card img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+    }
+
+    @keyframes softFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .cute-gif {
+      width: 190px;
+      height: 170px;
+      margin: 10px auto 18px;
+      border-radius: 26px;
+      background: linear-gradient(145deg, #fff7fb, #ffe2ef);
+      border: 2px solid #ffd0e4;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(255, 79, 154, 0.2);
+    }
+
+    .cute-gif::before,
+    .cute-gif::after {
+      content: "💖";
+      position: absolute;
+      font-size: 26px;
+      animation: flyHeart 3s infinite ease-in-out;
+    }
+
+    .cute-gif::before {
+      left: 20px;
+      bottom: 22px;
+    }
+
+    .cute-gif::after {
+      right: 22px;
+      top: 25px;
+      animation-delay: 0.8s;
+    }
+
+    .gif-emoji {
+      font-size: 78px;
+      animation: bounce 1.3s infinite ease-in-out;
+      z-index: 2;
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 18px;
+      animation: sparkle 1.8s infinite ease-in-out;
+    }
+
+    .sparkle.one {
+      left: 35px;
+      top: 30px;
+    }
+
+    .sparkle.two {
+      right: 38px;
+      bottom: 30px;
+      animation-delay: 0.5s;
+    }
+
+    .sparkle.three {
+      left: 78px;
+      bottom: 18px;
+      animation-delay: 1s;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-12px) scale(1.07);
+      }
+    }
+
+    @keyframes flyHeart {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        transform: scale(0.7) rotate(0deg);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.3) rotate(25deg);
+        opacity: 1;
+      }
+    }
+
+    .love-note {
+      background: #fff5fa;
+      border: 1.5px dashed #ff8fba;
+      border-radius: 18px;
+      padding: 14px;
+      color: #ff3f87;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 13px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-size: 14px;
+    }
+
+    .btn-main {
+      flex: 1;
+      color: white;
+      background: linear-gradient(135deg, #ff5f9e, #ff2474);
+      box-shadow: 0 10px 24px rgba(255, 36, 116, 0.35);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-soft {
+      color: #ff3f87;
+      background: #fff0f7;
+    }
+
+    .game-box {
+      height: 220px;
+      background: linear-gradient(180deg, #fff7fb, #ffe2ef);
+      border: 2px dashed #ff95bd;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .heart-game {
+      position: absolute;
+      top: -40px;
+      font-size: 32px;
+      cursor: pointer;
+      animation: fall 3s linear forwards;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        top: 235px;
+      }
+    }
+
+    .score {
+      color: #ff2f7d;
+      font-weight: 800;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .signature {
+      color: #ff2f7d;
+      font-size: 19px;
+      font-weight: 900;
+      margin-top: 12px;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 24px;
+      pointer-events: none;
+      animation: floatUp 6s linear forwards;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+      }
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      animation: confettiFall 3s linear forwards;
+      z-index: 10;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Cake Cutting Animation */
+    .cake-cut-area {
+      width: 220px;
+      height: 170px;
+      margin: 10px auto 18px;
+      position: relative;
+    }
+
+    .cake-plate {
+      width: 190px;
+      height: 18px;
+      background: #ffd1e3;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      box-shadow: 0 8px 20px rgba(255, 79, 154, 0.25);
+    }
+
+    .cake-body {
+      width: 180px;
+      height: 105px;
+      position: absolute;
+      bottom: 28px;
+      left: 20px;
+      display: flex;
+      transition: 0.8s ease;
+      z-index: 2;
+    }
+
+    .cake-half {
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(180deg, #ff9ac2 0%, #ff75a8 45%, #ff4f91 100%);
+      position: relative;
+      border: 3px solid #fff;
+      transition: 1s ease;
+      overflow: hidden;
+    }
+
+    .cake-left {
+      border-radius: 18px 0 0 18px;
+    }
+
+    .cake-right {
+      border-radius: 0 18px 18px 0;
+    }
+
+    .cake-half::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 16px;
+      background: #fff;
+      top: 28px;
+      left: 0;
+    }
+
+    .cake-half::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 14px;
+      background: #ffe066;
+      top: 58px;
+      left: 0;
+    }
+
+    .candle {
+      position: absolute;
+      width: 14px;
+      height: 42px;
+      background: repeating-linear-gradient(
+        45deg,
+        #fff,
+        #fff 5px,
+        #ff4f91 5px,
+        #ff4f91 10px
+      );
+      top: -38px;
+      left: -7px;
+      border-radius: 8px;
+      z-index: 4;
+    }
+
+    .flame {
+      width: 18px;
+      height: 24px;
+      background: radial-gradient(circle, #fff176, #ff9800, #ff3d00);
+      border-radius: 50%;
+      position: absolute;
+      top: -25px;
+      left: -2px;
+      animation: flameMove 0.5s infinite alternate;
+      transition: 0.4s ease;
+    }
+
+    @keyframes flameMove {
+      from {
+        transform: scale(1) rotate(-5deg);
+      }
+      to {
+        transform: scale(1.15) rotate(5deg);
+      }
+    }
+
+    .knife {
+      position: absolute;
+      width: 130px;
+      height: 18px;
+      background: linear-gradient(90deg, #dfe9f3, #ffffff, #9baec8);
+      border-radius: 100px;
+      top: 10px;
+      left: 145px;
+      transform: rotate(-35deg);
+      transform-origin: left center;
+      opacity: 0;
+      z-index: 6;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .knife::after {
+      content: "";
+      position: absolute;
+      width: 38px;
+      height: 20px;
+      background: #ff4f91;
+      border-radius: 12px;
+      right: -28px;
+      top: -1px;
+    }
+
+    .cut-line {
+      position: absolute;
+      width: 4px;
+      height: 105px;
+      background: rgba(255, 255, 255, 0.95);
+      left: 108px;
+      bottom: 28px;
+      z-index: 5;
+      opacity: 0;
+      border-radius: 20px;
+      transform-origin: top;
+    }
+
+    .cake-cut-area.cutting .knife {
+      animation: knifeCut 1.2s ease forwards;
+    }
+
+    .cake-cut-area.cutting .cut-line {
+      animation: showCut 0.5s ease forwards 0.8s;
+    }
+
+    .cake-cut-area.cutting .cake-left {
+      transform: translateX(-18px) rotate(-4deg);
+    }
+
+    .cake-cut-area.cutting .cake-right {
+      transform: translateX(18px) rotate(4deg);
+    }
+
+    .cake-cut-area.cutting .flame {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    @keyframes knifeCut {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(-35deg);
+      }
+      45% {
+        opacity: 1;
+        transform: translate(-55px, 70px) rotate(-35deg);
+      }
+      75% {
+        opacity: 1;
+        transform: translate(-70px, 100px) rotate(-35deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-100px, 125px) rotate(-35deg);
+      }
+    }
+
+    @keyframes showCut {
+      from {
+        opacity: 0;
+        transform: scaleY(0);
+      }
+      to {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app {
+        padding: 20px;
+        border-radius: 26px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .cute-gif {
+        width: 170px;
+        height: 145px;
+      }
+
+      .gif-emoji {
+        font-size: 65px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+    <div class="progress">
+      <span id="progressBar"></span>
+    </div>
+
+    <div class="badge" id="stepBadge">Step 1 of 5</div>
+
+    <div id="content"></div>
+
+    <div class="buttons">
+      <button class="btn-soft" id="backBtn">Back</button>
+      <button class="btn-main" id="nextBtn">Next</button>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    let birthdayName = "Beautiful Girl";
+    let gameScore = 0;
+    let gameStarted = false;
+    let heartInterval;
+
+    const content = document.getElementById("content");
+    const stepBadge = document.getElementById("stepBadge");
+    const progressBar = document.getElementById("progressBar");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const girlPictures = [
+      "https://randomuser.me/api/portraits/women/44.jpg",
+      "https://randomuser.me/api/portraits/women/65.jpg",
+      "https://randomuser.me/api/portraits/women/68.jpg",
+      "https://randomuser.me/api/portraits/women/72.jpg",
+      "https://randomuser.me/api/portraits/women/79.jpg",
+      "https://randomuser.me/api/portraits/women/85.jpg",
+      "https://randomuser.me/api/portraits/women/90.jpg"
+    ];
+
+    const randomGirlPicture =
+      girlPictures[Math.floor(Math.random() * girlPictures.length)];
+
+    function cuteGif(emoji) {
+      return `
+        <div class="cute-gif">
+          <span class="sparkle one">✨</span>
+          <span class="sparkle two">🌸</span>
+          <span class="sparkle three">✨</span>
+          <div class="gif-emoji">${emoji}</div>
+        </div>
+      `;
+    }
+
+    function renderGirlPicture() {
+      return `
+        <div class="girl-card">
+          <img 
+            src="${randomGirlPicture}" 
+            alt="Birthday girl"
+            onerror="this.src='https://randomuser.me/api/portraits/women/44.jpg'"
+          />
+        </div>
+      `;
+    }
+
+    function renderCakeCutting() {
+      return `
+        <div class="cake-cut-area" id="cakeCutArea">
+          <div class="knife"></div>
+          <div class="cut-line"></div>
+
+          <div class="cake-body">
+            <div class="cake-half cake-left"></div>
+
+            <div class="cake-half cake-right">
+              <div class="candle">
+                <div class="flame"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cake-plate"></div>
+        </div>
+      `;
+    }
+
+    function renderStep() {
+      stepBadge.textContent = `Step ${currentStep + 1} of 5`;
+      progressBar.style.width = `${((currentStep + 1) / 5) * 100}%`;
+
+      backBtn.style.visibility = currentStep === 0 ? "hidden" : "visible";
+      nextBtn.textContent = currentStep === 4 ? "Replay" : "Next";
+
+      if (currentStep === 0) {
+        content.innerHTML = `
+          <h1>A Cute Birthday Surprise 💝</h1>
+          ${renderGirlPicture()}
+          ${cuteGif("🎁")}
+          <p>Write her name and open this small birthday love story. Sulaiman</p>
+          <input id="nameInput" placeholder="Enter her name..." />
+          <div class="love-note">
+            This surprise is full of love, cute moments, tiny hearts, and birthday magic ✨
+          </div>
+        `;
+      }
+
+      if (currentStep === 1) {
+        content.innerHTML = `
+          <h1>Dear ${birthdayName} 🌸</h1>
+          ${renderGirlPicture()}
+          ${cuteGif("💕")}
+          <p>
+            Today is special because it belongs to you. 
+            Your smile makes everything brighter, softer, and more beautiful.
+          </p>
+          <div class="love-note">
+            May your heart always stay happy, your eyes always shine, and your life always feel loved 💖
+          </div>
+        `;
+      }
+
+      if (currentStep === 2) {
+        content.innerHTML = `
+          <h1>Catch the Love Hearts 💘</h1>
+          ${cuteGif("💘")}
+          <p>Mini cute game: catch 7 hearts to unlock extra birthday love.</p>
+          <button class="btn-main" onclick="startGame()">Start Game</button>
+          <div class="score" id="scoreText">Score: 0 / 7</div>
+          <div class="game-box" id="gameBox"></div>
+        `;
+      }
+
+      if (currentStep === 3) {
+        content.innerHTML = `
+          <h1>Cut the Birthday Cake 🎂</h1>
+          <p>Tap the button and cut the cake with love.</p>
+
+          ${renderCakeCutting()}
+
+          <button class="btn-main" onclick="cutCake()">Cut the Cake</button>
+
+          <div class="love-note hidden" id="wishMessage">
+            Cake cut successfully! May this birthday bring sweetness, love, and endless happiness ✨
+          </div>
+        `;
+      }
+
+      if (currentStep === 4) {
+        content.innerHTML = `
+          <h1>Happy Birthday, ${birthdayName}! 🎉</h1>
+          ${renderGirlPicture()}
+          ${cuteGif("🎉")}
+          <p>
+            May your birthday be filled with love, laughter, cute surprises, peace, success,
+            and moments that stay in your heart forever.
+          </p>
+          <div class="love-note">
+            You are special, you are loved, and you deserve a year as beautiful as your smile 💗
+          </div>
+          <div class="signature">With lots of love 💖</div>
+        `;
+
+        launchConfetti();
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentStep === 0) {
+        const input = document.getElementById("nameInput");
+        if (input && input.value.trim()) {
+          birthdayName = input.value.trim();
+        }
+      }
+
+      clearInterval(heartInterval);
+      gameStarted = false;
+
+      if (currentStep === 4) {
+        currentStep = 0;
+      } else {
+        currentStep++;
+      }
+
+      renderStep();
+    });
+
+    backBtn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        clearInterval(heartInterval);
+        gameStarted = false;
+        currentStep--;
+        renderStep();
+      }
+    });
+
+    function startGame() {
+      if (gameStarted) return;
+
+      gameStarted = true;
+      gameScore = 0;
+
+      const scoreText = document.getElementById("scoreText");
+      const gameBox = document.getElementById("gameBox");
+
+      scoreText.textContent = "Score: 0 / 7";
+      gameBox.innerHTML = "";
+
+      heartInterval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart-game";
+        heart.textContent = ["💖", "💘", "💕", "💗", "💝"][Math.floor(Math.random() * 5)];
+        heart.style.left = Math.random() * 85 + "%";
+
+        heart.onclick = () => {
+          gameScore++;
+          scoreText.textContent = `Score: ${gameScore} / 7`;
+          heart.remove();
+
+          if (gameScore >= 7) {
+            clearInterval(heartInterval);
+            gameBox.innerHTML = `
+              <div style="padding:45px 15px; color:#ff2f7d; font-weight:900; font-size:20px; line-height:1.6;">
+                You caught all the love! 💝<br>
+                Extra birthday happiness unlocked ✨
+              </div>
+            `;
+            launchConfetti();
+          }
+        };
+
+        gameBox.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 3000);
+      }, 650);
+    }
+
+    function cutCake() {
+      const cakeArea = document.getElementById("cakeCutArea");
+      const wishMessage = document.getElementById("wishMessage");
+
+      if (!cakeArea) return;
+
+      cakeArea.classList.add("cutting");
+
+      setTimeout(() => {
+        if (wishMessage) {
+          wishMessage.classList.remove("hidden");
+        }
+
+        launchConfetti();
+      }, 1200);
+    }
+
+    function createFloatingHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.textContent = ["💖", "💕", "💗", "💘"][Math.floor(Math.random() * 4)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createFloatingHeart, 700);
+
+    function launchConfetti() {
+      const colors = ["#ff5f9e", "#ffd166", "#9b5de5", "#00bbf9", "#00f5d4"];
+
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = 2 + Math.random() * 2 + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 4000);
+      }
+    }
+
+    renderStep();
+  </script>
+
+</body>
+</html>
